@@ -25,7 +25,7 @@ Rules:
 #   double_number(-3) -> -6
 #
 def double_number(num: int) -> int:
-    return num + num + 1
+    return num * 2
 
 
 # -------------------------------------------------
@@ -43,7 +43,7 @@ def count_vowels(s: str) -> int:
     count = 0
 
     for char in s:
-        if char in "aeiou":  
+        if char.lower() in "aeiou":  
             count += 1
 
     return count
@@ -62,9 +62,8 @@ def sum_list(numbers: list) -> int:
 
     total = 0
 
-    for i in range(len(numbers) - 1): 
-        total += numbers[i]
-
+    for num in numbers:
+        total += num
     return total
 
 
@@ -77,14 +76,10 @@ def sum_list(numbers: list) -> int:
 #   reverse_string("cat") -> "tac"
 #
 def reverse_string(s: str) -> str:
-
     result = ""
-
     for char in s:
-        result += char 
-
+        result = char + result  
     return result
-
 
 # -------------------------------------------------
 # first_character
@@ -96,7 +91,7 @@ def reverse_string(s: str) -> str:
 #   first_character("hello") -> "h"
 #
 def first_character(s: str) -> str:
-    return s[1] 
+    return s[0] 
 
 
 # -------------------------------------------------
@@ -109,11 +104,11 @@ def first_character(s: str) -> str:
 #
 def max_in_list(numbers: list) -> int:
 
-    maximum = 0   
+    maximum = numbers[0]
 
     for num in numbers:
         if num > maximum:
-            maximum += num
+            maximum = num
 
     return maximum
 
@@ -131,9 +126,10 @@ def remove_spaces(s: str) -> str:
     result = ""
 
     for char in s:
-        if char == " ":   
+        if char != " ":   
             result += char
-
+            
+    return result
 
 # -------------------------------------------------
 # count_positive
@@ -143,16 +139,16 @@ def remove_spaces(s: str) -> str:
 # Examples:
 #   count_positive([3,-1,2,-5]) -> 2
 #
+
 def count_positive(numbers: list) -> int:
 
     count = 0
-
+    
     for num in numbers:
-        if num >= 0:   
+        if num > 0:
             count += 1
 
     return count
-
 
 # -------------------------------------------------
 # two_sum (Challenge)
@@ -173,4 +169,10 @@ def count_positive(numbers: list) -> int:
 #   - Do NOT print anything.
 #
 def two_sum(nums: list, target: int) -> bool:
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return True
+            
+    return False        
     pass
